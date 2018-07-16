@@ -14,7 +14,7 @@ holding the bowienator.py script, and enter
 
 ```python
 bowienator.py path/to/the/image/file/here.whatever
-```.
+```
 
 The script will run, and automatically detect faces in the photo, put the David Bowie
 picture over theirs, and save the picture in the same directory as the original.
