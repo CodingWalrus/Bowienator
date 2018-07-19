@@ -13,7 +13,7 @@ Aladdin Sane era David Bowie. You can enter a command line at the directory
 holding the bowienator.py script, and enter
 
 ```
-bowienator.py path/to/the/image/file/here.whatever
+> bowienator.py path/to/the/image/file/here.whatever
 ```
 
 The script will run, and automatically detect faces in the photo, put the David Bowie
