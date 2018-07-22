@@ -2,7 +2,7 @@ import cv2, os
 
 from PIL import Image
 
-def face_list(imagePath,scale_factor,min_neighbors,min_size,cascade_path=os.path.join(os.path.basename(__file__),'data','cascade.xml')):
+def face_list(imagePath,scale_factor,min_neighbors,min_size,cascade_path=os.path.join(os.path.dirname(__file__),'data','cascade.xml')):
 	face_cascade = cv2.CascadeClassifier(cascade_path)
 	
 	gray_image = cv2.imread(imagePath, 0)
@@ -16,7 +16,7 @@ def face_list(imagePath,scale_factor,min_neighbors,min_size,cascade_path=os.path
 	)
 	return faces
 	
-def bowie_draw(imagePath,face_coords,bowie_path=os.path.join(os.path.basename(__file__),'data','bowie.png'):
+def bowie_draw(imagePath,face_coords,bowie_path=os.path.join(os.path.dirname(__file__),'data','bowie.png')):
 	background = Image.open(imagePath)
 	bowie_face = Image.open(bowie_path)
 	for (x,y,w,h) in face_coords:
