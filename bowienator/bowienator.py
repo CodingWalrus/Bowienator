@@ -23,6 +23,7 @@ def bowie_draw(imagePath,face_coords,bowie_path):
 		new_bowie = bowie_face.resize((int(w*1.25),int(h*1.6)))
 		background.paste(new_bowie,(int(x-0.125*w),int(y-0.3815*h)),new_bowie)
 	background.save(os.path.splitext(imagePath)[0] + " Bowiefied.png","PNG")
+	return background
 	
 if __name__ == "__main__":
 	import argparse
