@@ -10,8 +10,8 @@ setup(
 	packages=setuptools.find_packages(),
 	include_package_data=True,
 	license='MIT',
-	long_description=read('README.md')
-	long_description_content_type="text/markdown"
+	long_description=open('README.md').read(),
+	long_description_content_type="text/markdown",
 	classifiers=(
 		"Programming Language :: Python :: 3",
 		"License :: OSI Approved :: MIT License",
@@ -19,4 +19,9 @@ setup(
 		"Topic :: Games/Entertainment",
 		"Topic :: Multimedia :: Graphics"
 	),
+	install_requires=[
+		'numpy',
+		'opencv-python>3',
+		'Pillow>=5'
+	]
 )
