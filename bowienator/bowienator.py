@@ -2,7 +2,7 @@ import cv2, os
 
 from PIL import Image
 
-def face_list(imagePath,scale_factor,min_neighbors,min_size,cascade_path=os.path.join(os.path.dirname(__file__),'data','cascade.xml')):
+def face_list(imagePath,scale_factor=1.1,min_neighbors=5,min_size=(30,30),cascade_path=os.path.join(os.path.dirname(__file__),'data','cascade.xml')):
 	face_cascade = cv2.CascadeClassifier(cascade_path)
 	
 	gray_image = cv2.imread(imagePath, 0)
@@ -23,7 +23,7 @@ def bowie_draw(imagePath,face_coords,bowie_path=os.path.join(os.path.dirname(__f
 		new_bowie = bowie_face.resize((int(w*1.25),int(h*1.6)))
 		background.paste(new_bowie,(int(x-0.125*w),int(y-0.3815*h)),new_bowie)
 	background.save(os.path.splitext(imagePath)[0] + " Bowiefied.png","PNG")
-	return background
+	return True
 	
 if __name__ == "__main__":
 	import argparse
@@ -41,5 +41,5 @@ if __name__ == "__main__":
 	
 	args = parser.parse_args()
 	
-	all_faces = face_list(args.img_dir,Config.CASCADE_PATH,args.scale,args.minNeighbors,args.minSize)
+	all_faces = face_list(args.img_dir,args.scale,args.minNeighbors,args.minSize,Config.CASCADE_PATH)
 	bowie_draw(args.img_dir,all_faces,Config.BOWIE_PATH)
