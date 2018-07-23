@@ -7,7 +7,7 @@ setup(
 	author = 'James Wash',
 	author_email = 'jamescwash2@hotmail.com',
 	url = 'https://github.com/CodingWalrus/Bowienator',
-	packages=setuptools.find_packages(),
+	packages=find_packages(),
 	include_package_data=True,
 	license='MIT',
 	long_description=open('README.md').read(),
