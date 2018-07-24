@@ -1,0 +1,166 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>API Reference &#8212; Bowienator rc documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-bowienator">
+<span id="api-reference"></span><h1>API Reference<a class="headerlink" href="#module-bowienator" title="Permalink to this headline">¶</a></h1>
+<p>bowienator img_dir [-h] [-scale] [-minNeighbors] [-minSize]</p>
+<dl class="docutils">
+<dt>Summary:</dt>
+<dd>The Bowienator is a script to detect faces in a photo and draw over them with a David Bowie face.</dd>
+<dt>Args:   </dt>
+<dd><p class="first">img_dir (str) - A string of the path to the image file you want Bowiefied
+-h - Displays the help arguments for the script
+-scale (float) - Used to set the scale of the image pyramid used by opencv
+-minNeighbors (int) - Determines the minimum number of neighboring rectangles before a candidate rectangle is detected
+-minSize (ints) - Determines the smallest window the cascade will detect</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Note: the minSize is represented by two integers, which are turned into a tuple</li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt>
+<dd>True, and saves the Bowiefied copy of the picture to the same directory of the img_dir argument</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bowienator</span> <span class="n">example</span><span class="o">/</span><span class="n">image</span> <span class="o">-</span><span class="n">scale</span> <span class="mf">1.2</span> <span class="o">-</span><span class="n">minNeighbors</span> <span class="mi">3</span> <span class="o">-</span><span class="n">minSize</span> <span class="mi">20</span> <span class="mi">20</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The image with Bowie drawn over top is saved in the same directory as example_image</p>
+<dl class="function">
+<dt id="bowienator.bowie_draw">
+<code class="descclassname">bowienator.</code><code class="descname">bowie_draw</code><span class="sig-paren">(</span><em>imagePath</em>, <em>face_coords</em>, <em>bowie_path</em><span class="sig-paren">)</span><a class="headerlink" href="#bowienator.bowie_draw" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Summary:</dt>
+<dd>Draws the Bowie face over every point found by the face_list function</dd>
+<dt>Args:</dt>
+<dd>imagePath (str) - A string of the path to the image file you want to draw over
+face_coords (array) - An array of arrays, each one with the positional and dimensional data for a detected face
+bowie_path (str) - A string of the path to the image file that will be used to draw on the image</dd>
+<dt>Returns:</dt>
+<dd>Saves the image with the drawn-on Bowies, returns True to signal error-free completion</dd>
+</dl>
+<p>Examples:</p>
+<p>Consider the image we detected before, with the two faces. Consider the face data to be stored in the faces variable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bowie_draw</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span><span class="n">faces</span><span class="p">,</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">bowie</span><span class="o">/</span><span class="n">image</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>The image with Bowie drawn over top is saved in the same directory as example_image</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="bowienator.face_list">
+<code class="descclassname">bowienator.</code><code class="descname">face_list</code><span class="sig-paren">(</span><em>imagePath</em>, <em>scale_factor</em>, <em>min_neighbors</em>, <em>min_size</em>, <em>cascade_path</em><span class="sig-paren">)</span><a class="headerlink" href="#bowienator.face_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Summary: </dt>
+<dd>Finds all faces in the provided photograph, returns a list of face data sets</dd>
+<dt>Args:</dt>
+<dd>imagePath (str) - A string of the path to the image file you want to read
+scale_factor (float) - Used to set the scale of the image pyramid used by opencv
+min_neighbors (integer) - Determines the minimum number of neighboring rectangles before a candidate rectangle is detected
+min_size (tuple) - Determines the smallest window the cascade will detect
+cascade_path (str) - contains the path to the cascade used to do face detection</dd>
+<dt>Returns:</dt>
+<dd>An array of arrays containing positional and dimensional data for detected faces</dd>
+</dl>
+<p>Examples:</p>
+<p>Let’s suppose there is an image with two faces you want to detect.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">face_list</span><span class="p">(</span><span class="n">example_image</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">3</span><span class="p">,(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">cascade</span><span class="p">)</span>
+<span class="go">[[x1,y1,w1,h1],[x2,y2,w2,h2]]</span>
+</pre></div>
+</div>
+<p>Where [x1,y1,w1,h1] is an array of the x value, y value, width and height of the first face detected.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Bowienator</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, James Wash.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/API_reference.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

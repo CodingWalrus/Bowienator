@@ -1,0 +1,30 @@
+bowienator package
+==================
+
+Submodules
+----------
+
+bowienator.bowienator module
+----------------------------
+
+.. automodule:: bowienator.bowienator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+bowienator.config module
+------------------------
+
+.. automodule:: bowienator.config
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: bowienator
+    :members:
+    :undoc-members:
+    :show-inheritance:
